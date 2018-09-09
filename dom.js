@@ -46,6 +46,18 @@ const $ = function (sel) {
         
       }
    }
+
+   const render = (...props) => {
+    props.forEach(e => {  
+       append2(e);
+    });
+  }
+  
+  const append2 = content => {
+    const p = document.createElement('p');
+    p.textContent = content;
+    document.getElementById('content').appendChild(p);
+  }
   
   
     const publicAPI = {
@@ -55,7 +67,10 @@ const $ = function (sel) {
       val: val,
       html: html,
       append: append,
-      empty: empty
+      empty: empty,
+      render: render,
+      append2: append2
+
     }
   
     return publicAPI;
@@ -63,3 +78,4 @@ const $ = function (sel) {
   
   
   }
+  
