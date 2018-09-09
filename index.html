@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,55 @@
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
+
 <body>
-  <div id="content"></div>
-  <script src="dom.js"></script> 
+  <h1 class='top-header'>Employee Manager</h1>
+  <nav class="sidenav">
+    <button class='print-nav button'>Print</button>
+    <button class='verify-nav button'>Verify</button>
+    <button class='lookup-nav button'>Lookup</button>
+    <button class='contains-nav button'>Contains</button>
+    <button class='update-nav button'>Update</button>
+    <button class='add-nav button'>Add</button>
+    <button class='delete-nav button'>Delete</button>
+  </nav>
+
+  <div class="container">
+    <!-- <form class="verify-form">
+      <input type="text" id="verify-input" placeholder="Employee Name" autocomplete="off" />
+      <button id="verify">Verify</button>
+    </form> --> 
+    <!-- <form class="lookup-form box">
+      <input type="text" id="lookup-input" placeholder="Employee Name" autocomplete="off" />
+      <button id="lookup">Lookup</button>
+    </form>
+    <form class="contains-form box">
+      <input type="text" id="contains-input" placeholder="Employee Name" autocomplete="off" />
+      <button id="contains">Contains</button>
+    </form>
+    <form class="update-form box">
+      <input type="text" id="update-input" placeholder="Employee Name" autocomplete="off" />
+      <input type="text" id="update-input" placeholder="Office Number" autocomplete="off" />
+      <input type="text" id="update-input" placeholder="Phone Number" autocomplete="off" />
+      <button id="update">Update</button>
+    </form>
+    <form class="add-form box">
+      <input type="text" id="add-input" placeholder="Employee Name" autocomplete="off" />
+      <input type="text" id="add-input" placeholder="Office Number" autocomplete="off" />
+      <input type="text" id="add-input" placeholder="Phone Number" autocomplete="off" />
+      <button id="add">Add</button>
+    </form>
+    <form class="delete-form box">
+      <input type="text" id="delete-input" placeholder="Employee Name" autocomplete="off" />
+      <button id="delete">Delete</button>
+    </form> -->
+
+    <div id="results">
+    </div>
+  </div>
+
+  <script src="dom.js"></script>
   <script src="app.js"></script>
 </body>
+
 </html>
