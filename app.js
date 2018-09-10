@@ -93,10 +93,6 @@ const listVerify = (event) => {
 
 
 
-  }// this else statement is NOT needed and is only placed here to show
-  // what is happening when we click on .container
-  else {
-    console.log("You are clicking everywhere else but the button.")
   }
 };
 
@@ -151,8 +147,6 @@ const renderLookup = (event) => {
   $(".results").empty();
   $(".results-verify").empty();
   $(".results-display").empty();
-
-
 
   $(".results-verify").append(`<input type="text" class="lookup-input inputb" placeholder="    Employee Name" /><button id="lookup">Lookup</button>`);
 
