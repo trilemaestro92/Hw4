@@ -121,27 +121,29 @@ $(".results-verify").on("click", listVerify)
 
 const listLookup = (event) => {
   event.preventDefault();
-
-  const verifyClicked = event.target.id;
-
-  if (verifyClicked === "lookup") {
+  
+   const verifyClicked = event.target.id;
+  
+   if (verifyClicked === "lookup") {
+   
     event.preventDefault();
+    $(".results-display").empty();
     for (let i = 0; i < employeeList.length; i++) {
-      if ($('.lookup-input').val() === employeeList[i].name) {
-        $(".results-display").empty();
+       if ($('.lookup-input').val() === employeeList[i].name) {
+         $(".results-display").empty();
         $('.results-display').
           append(
             `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`)
         break;
       }
       else if ($('.lookup-input').val() !== employeeList[i].name) {
-        message = 'Employee not found'
-      } $('.results-display').append(message)
-
-    }
+        $(".results-display").empty();
+        $('.results-display').append(`<div>Employee not found</div>`)
+        
+      } 
+     }
   }
-
-}
+ }
 
 const renderLookup = (event) => {
 
