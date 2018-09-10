@@ -48,6 +48,7 @@ const activeList = [];
 const render = function () {
   $('.results').empty();
   $('.results-verify').empty();
+  $(".results-display").empty();
 
   for (let i = 0; i < employeeList.length; i++) {
     if (activeList.length > 0) {
@@ -120,26 +121,26 @@ $(".results-verify").on("click", listVerify)
 
 const listLookup = (event) => {
   event.preventDefault();
-  
+
   const verifyClicked = event.target.id;
-  
+
   if (verifyClicked === "lookup") {
-   
     event.preventDefault();
-    $(".results-display").empty();
     for (let i = 0; i < employeeList.length; i++) {
-
       if ($('.lookup-input').val() === employeeList[i].name) {
-
+        $(".results-display").empty();
         $('.results-display').
           append(
             `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`)
+        break;
       }
-      else {
-        console.log("You are clicking everywhere else but the button.")
-      }
+      else if ($('.lookup-input').val() !== employeeList[i].name) {
+        message = 'Employee not found'
+      } $('.results-display').append(message)
+
     }
   }
+
 }
 
 const renderLookup = (event) => {
@@ -163,28 +164,24 @@ $(".results-verify").on("click", listLookup)
 
 const listContain = (event) => {
   event.preventDefault();
-  
+
   const verifyClicked = event.target.id;
-  
+
   if (verifyClicked === "contains") {
-   
+
     event.preventDefault();
     $(".results-display").empty();
     for (let i = 0; i < employeeList.length; i++) {
-      while (activeList.length > 0) {
-        activeList.pop();
-    }
-      // (employeeList[i].name.includes($('.lookup-input').val()))
       if (employeeList[i].name.includes($('.contain-input').val())) {
-        activeList.push(employeeList[i]);
+
         $('.results-display').
-        append(
-          `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`)
+          append(
+            `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`)    
       }
       else {
-        console.log("You are clicking everywhere else but the button.")
+        message = "Employee not found"
       }
-    }
+    } console.log(message);
   }
 }
 
@@ -206,48 +203,153 @@ $(".results-verify").on("click", listContain)
 
 
 
-// //Update
+//Update
 
 
-// const listUpdate = (event) => {
-//   event.preventDefault();
-  
-//   const verifyClicked = event.target.id;
-  
-//   if (verifyClicked === "contains") {
-   
-//     event.preventDefault();
-//     $(".results-display").empty();
-//     for (let i = 0; i < employeeList.length; i++) {
-//       while (activeList.length > 0) {
-//         activeList.pop();
-//     }
-//       // (employeeList[i].name.includes($('.lookup-input').val()))
-//       if (employeeList[i].name.includes($('.contain-input').val())) {
-//         activeList.push(employeeList[i]);
-//         $('.results-display').
-//         append(
-//           `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`)
-//       }
-//       else {
-//         console.log("You are clicking everywhere else but the button.")
-//       }
-//     }
-//   }
-// }
-
-// const renderUpdate = (event) => {
-
-//   event.preventDefault()
-//   $(".results").empty();
-//   $(".results-verify").empty();
-//   $(".results-display").empty();
+const listUpdate = (event) => {
+  event.preventDefault();
 
 
+  const verifyClicked = event.target.id;
 
-//   $(".results-verify").append(`<input type="text" class="contain-input inputb" placeholder="    Employee Name" /><button id="contains">Contains</button>`);
+  if (verifyClicked === "update") {
 
-// }
+    // $(".results-display").empty();
+    for (let i = 0; i < employeeList.length; i++) {
+      $(".results-display").empty();
+      if ($('.updateName-input').val() === employeeList[i].name) {
 
-// $(".contains-nav").on("click", renderUpdate)
-// $(".results-verify").on("click", listUpdate)
+        employeeList[i].officeNum = $('.updateOffice-input').val();
+        employeeList[i].phoneNum = $('.updatePhone-input').val();
+        $('.results-display').
+          append(
+            `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`)
+        break;
+      }
+      else {
+        message = 'Employee Not Found';
+        $(".results-display").append(message)
+        // break;
+      }
+
+    }
+  }
+}
+
+const renderUpdate = (event) => {
+
+  event.preventDefault()
+  $(".results").empty();
+  $(".results-verify").empty();
+  $(".results-display").empty();
+
+
+
+  $(".results-verify").
+    append(`
+  <input type="text" class="updateName-input inputb" placeholder="    Employee Name" />
+  <input type="text" class="updateOffice-input inputb" placeholder="    Office Number" />
+  <input type="text" class="updatePhone-input inputb" placeholder="    Phone Number" />
+  <button id="update">Update</button>`);
+
+}
+
+$(".update-nav").on("click", renderUpdate)
+$(".results-verify").on("click", listUpdate)
+
+
+//Add
+
+
+const listAdd = (event) => {
+  event.preventDefault();
+
+  const verifyClicked = event.target.id;
+
+  if (verifyClicked === "add") {
+    $(".results-display").empty();
+
+    let newEmployee = {};
+    newEmployee.name = $('.addName-input').val();
+    newEmployee.officeNum = $('.addOffice-input').val();
+    newEmployee.phoneNum = $('.addPhone-input').val()
+
+    employeeList.push(newEmployee);
+
+    for (let i = 0; i < employeeList.length; i++) {
+      $('.results-display').
+        append(
+          `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`);
+    }
+
+  }
+}
+
+const renderAdd = (event) => {
+
+  event.preventDefault()
+  $(".results").empty();
+  $(".results-verify").empty();
+  $(".results-display").empty();
+
+
+
+  $(".results-verify").
+    append(`
+  <input type="text" class="addName-input inputb" placeholder="    Employee Name" />
+  <input type="text" class="addOffice-input inputb" placeholder="    Office Number" />
+  <input type="text" class="addPhone-input inputb" placeholder="    Phone Number" />
+  <button id="add">Add</button>`);
+}
+
+$(".add-nav").on("click", renderAdd)
+$(".results-verify").on("click", listAdd)
+
+//Delete
+
+
+const listDelete = (event) => {
+  event.preventDefault();
+
+
+  const verifyClicked = event.target.id;
+
+  if (verifyClicked === "delete") {
+    $(".results-display").empty();
+
+    for (let i = 0; i < employeeList.length; i++) {
+      if ($('.delete-input').val() === employeeList[i].name) {
+        employeeList.splice(i, 1);
+        for (let i = 0; i < employeeList.length; i++) {
+          $('.results-display').
+            append(
+              `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`);
+        }
+        break;
+      } else {
+        $(".results-display").empty();
+        message = 'Employee Not Found';
+      }
+    } $(".results-display").append(message)
+
+  }
+}
+
+const renderDelete = (event) => {
+
+  event.preventDefault()
+  $(".results").empty();
+  $(".results-verify").empty();
+  $(".results-display").empty();
+
+
+
+  $(".results-verify").
+    append(`
+  <input type="text" class="delete-input inputb" placeholder="    Employee Name" />
+  <button id="delete">Delete</button>`);
+
+}
+
+$(".delete-nav").on("click", renderDelete)
+$(".results-verify").on("click", listDelete)
