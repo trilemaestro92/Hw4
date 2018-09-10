@@ -164,26 +164,25 @@ $(".results-verify").on("click", listLookup)
 
 const listContain = (event) => {
   event.preventDefault();
-
   const verifyClicked = event.target.id;
-
   if (verifyClicked === "contains") {
-
-    event.preventDefault();
+    let found = false;
     $(".results-display").empty();
     for (let i = 0; i < employeeList.length; i++) {
-      if (employeeList[i].name.includes($('.contain-input').val())) {
-
+      if (employeeList[i].name.includes($('.contain-input').val())) { 
         $('.results-display').
           append(
-            `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`)    
+            `<div class='box'>${employeeList[i].name}<br> #${employeeList[i].officeNum}<br> ${employeeList[i].phoneNum} </div>`)  
+        found = true;  
       }
-      else {
-        message = "Employee not found"
+    }
+      if (!found || $('.contain-input').val() == "") {
+        $(".results-display").empty();
+        $('.results-display').append(`<div>Employee not found</div>`)
       }
-    } console.log(message);
+    } 
   }
-}
+
 
 const renderContain = (event) => {
 
@@ -229,7 +228,7 @@ const listUpdate = (event) => {
       else {
         message = 'Employee Not Found';
         $(".results-display").append(message)
-        // break;
+      
       }
 
     }
