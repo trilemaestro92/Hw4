@@ -81,7 +81,7 @@ const listVerify = (event) => {
     $(".results-display").empty();
     for (let i = 0; i < employeeList.length; i++) {
 
-      if ($('.verify-input').val() === employeeList[i].name) {
+      if ($('.verify-input').val().toLowerCase() === employeeList[i].name.toLowerCase()) {
 
         message = 'Employee Found';
         break;
@@ -125,7 +125,7 @@ const listLookup = (event) => {
     event.preventDefault();
     $(".results-display").empty();
     for (let i = 0; i < employeeList.length; i++) {
-      if ($('.lookup-input').val() === employeeList[i].name) {
+      if ($('.lookup-input').val().toLowerCase() === employeeList[i].name.toLowerCase()) {
         $(".results-display").empty();
         $('.results-display').
           append(
@@ -148,7 +148,7 @@ const renderLookup = (event) => {
   $(".results-verify").empty();
   $(".results-display").empty();
 
-  $(".results-verify").append(`<input type="text" class="lookup-input inputb" placeholder="    Employee Name" /><button id="lookup">Lookup</button>`);
+  $(".results-verify").append(`<input type="text" class="lookup-input inputb" placeholder=" Employee Name" /><button id="lookup">Lookup</button>`);
 
 }
 
@@ -212,7 +212,7 @@ const listUpdate = (event) => {
     // $(".results-display").empty();
     for (let i = 0; i < employeeList.length; i++) {
       $(".results-display").empty();
-      if ($('.updateName-input').val() === employeeList[i].name) {
+      if ($('.updateName-input').val().toLowerCase() === employeeList[i].name.toLowerCase()) {
 
         employeeList[i].officeNum = $('.updateOffice-input').val();
         employeeList[i].phoneNum = $('.updatePhone-input').val();
@@ -310,7 +310,7 @@ const verifyClicked = event.target.id;
     $(".results-display").empty();
 
     for (let i = 0; i < employeeList.length; i++) {
-      if ($('.delete-input').val() === employeeList[i].name) {
+      if ($('.delete-input').val().toLowerCase() === employeeList[i].name.toLowerCase()) {
         $(".results-display").empty();
         employeeList.splice(i, 1);
         for (let i = 0; i < employeeList.length; i++) {
