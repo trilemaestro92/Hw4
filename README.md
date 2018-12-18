@@ -3,7 +3,8 @@
 
 ![](images/employee.JPG)
 
-This is a single-page application. 
+
+This is a single-page application. Front-end use HTML, CSS, Javascript, JQuery.
 
 ## Functionality includes
 
